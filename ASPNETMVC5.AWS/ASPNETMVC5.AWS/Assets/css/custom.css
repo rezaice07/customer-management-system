@@ -1,0 +1,38 @@
+﻿
+@media only screen and (min-width: 401px) {
+    .page-header {
+        margin: 20px 85px 20px !important;
+    }
+    .page-header-navigation {
+        float: left;
+        padding-left: 845px;
+        margin-top: -35px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+    .page-header {
+        margin: 20px 16px 20px !important;
+    }
+    .page-header-navigation {
+        float: left;
+        padding-left: 275px;
+        margin-top: -35px;
+    }
+}
+
+.inner-wrapper {
+    background-color: #d2d1d13d;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.section-login {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #d2d1d13d;
+}
+input, select, textarea {
+    max-width: 100%;
+}

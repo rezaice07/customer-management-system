@@ -1,0 +1,92 @@
+﻿
+@model ASPNETMVC5.AWS.ViewModels.Contacts.AddEditCustomerViewModel
+
+@{
+    ViewBag.Title = "Contacts";
+}
+
+@section UserMenus
+{
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Smart CRM", "Dashboard", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Customers", "List", "Customer")</li>
+                    <li>@Html.ActionLink("Users", "List", "User")</li>
+                    <li><a href="/smartcrm/myprofile">My Profile</a></li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+@section BreadCrumb{
+    <div class="row">
+        <div class="col-md-10 col-sm-offset-1">
+            <div class="page-header">
+                <h3>Customer Update</h3>
+                <div class="page-header-navigation">
+                    <a class="btn btn-default" href="/customer/list">Back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-10 col-sm-offset-1">
+        <div class="inner-wrapper">
+            @using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.FirstName)
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.LastName)
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Email)
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.CellPhone)
+                            @Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CellPhone)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.LabelFor(m => m.Address)
+                            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @rows = "5" })
+                            @Html.ValidationMessageFor(m => m.Address)
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@using ASPNETMVC5.Core
+@model ASPNETMVC5.Data.Models.User
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+@section UserMenus
+{
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Smart CRM", "Dashboard", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Model.RoleId == AppConstants.UserRoleConstants.Admin)
+                    {
+                        <li>@Html.ActionLink("Customers", "List", "Customer")</li>
+                        <li>@Html.ActionLink("Users", "List", "User")</li>
+                    }
+                    <li><a href="/smartcrm/myprofile">My Profile</a></li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+@section BreadCrumb{
+    <div class="row">
+        <div class="col-md-10 col-sm-offset-1">
+            <div class="page-header">
+                <h3>Detail about-Mr./Mrs @Model.Contact.FirstName</h3>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-10 col-sm-offset-1">
+        <div class="inner-wrapper">
+            <ul class="list-group no-border">
+                <li class="list-group-item custom-list-group-item"><strong>Name:</strong> @Model.Contact.FullName</li>
+                <li class="list-group-item custom-list-group-item"><strong>Email:</strong> @Model.Contact.Email</li>
+                <li class="list-group-item custom-list-group-item"><strong>Cellphone: </strong> @Model.Contact.CellPhone</li>
+                <li class="list-group-item custom-list-group-item"><strong>Address:</strong> @Model.Contact.Address</li>
+            </ul>
+
+            <p>Would you like to reset password, click Reset password button below....</p>
+            <a href="/user/ResetPassword" class="btn btn-success"> Reset Password</a>
+        </div>
+
+
+
+    </div>
+</div>

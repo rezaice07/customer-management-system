@@ -1,0 +1,52 @@
+﻿
+@model ASPNETMVC5.AWS.ViewModels.Users.UserListViewModel
+
+@{
+    ViewBag.Title = "Users";
+}
+
+@section UserMenus
+{
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Smart CRM", "Dashboard", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Customers", "List", "Customer")</li>
+                    <li>@Html.ActionLink("Users", "List", "User")</li>
+                    <li><a href="/smartcrm/myprofile">My Profile</a></li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+@section BreadCrumb{
+    <div class="row">
+        <div class="col-md-10 col-sm-offset-1">
+            <div class="page-header">
+                <h3>Users</h3>
+                @*<div class="page-header-navigation">
+                    <a class="btn btn-default" href="/user/list">Add New User</a>
+                </div>*@
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-10 col-sm-offset-1">
+        <div class="inner-wrapper">
+            @Html.Partial("_UserSearchFormPartial", Model.SearchFilter)
+            @Html.Partial("_UserListPartial", Model)
+        </div>
+    </div>
+</div>

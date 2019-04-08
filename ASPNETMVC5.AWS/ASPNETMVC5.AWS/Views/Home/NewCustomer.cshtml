@@ -1,0 +1,108 @@
+﻿
+@model ASPNETMVC5.AWS.ViewModels.Contacts.AddEditCustomerViewModel
+
+@{
+    ViewBag.Title = "New Customer";
+}
+
+@section PublicMenus
+{
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Smart CRM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/home/newcustomer">New Customer</a></li>
+                    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+@section BreadCrumb{
+    <div class="row">
+        <div class="col-md-10 col-sm-offset-1">
+            <div class="page-header">
+                <h3>New Customer</h3>               
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-10 col-sm-offset-1">
+        <div class="inner-wrapper">
+            @using (Html.BeginForm("NewCustomer", "Home", FormMethod.Post, new { @role = "form" }))
+            {
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.FirstName)
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.LastName)
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Email)
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.CellPhone)
+                            @Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CellPhone)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Username)
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Username)
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.Password)
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control" ,@type="Password"})
+                                    @Html.ValidationMessageFor(m => m.Password)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.ConfirmPassword)
+                                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", @type = "Password" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.LabelFor(m => m.Address)
+                            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @rows = "5" })
+                            @Html.ValidationMessageFor(m => m.Address)
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
+        </div>
+    </div>
+</div>

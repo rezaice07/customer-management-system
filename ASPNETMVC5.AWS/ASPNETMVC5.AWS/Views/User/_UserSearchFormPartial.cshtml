@@ -1,0 +1,25 @@
+﻿
+@model ASPNETMVC5.Core.Filters.UserSearchFilter
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("List", "User", FormMethod.Post, new { @role = "form" }))
+        {@Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row-fluid">
+                <div class="span12 form-inline">
+                    <div class="form-group">
+                        <label class="bolder"><i class="icon-info-sign " data-toggle="tooltip" data-placement="top" title="search by name, email, cellphone"></i> Search Term</label><br />
+                        @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control",@placeholder="Search Term"})
+                    </div>
+                    <div class="form-group ">
+                        <label></label><br />
+                        <button class="btn btn-info" type="submit"><i class="fa fa-search"></i> Filter</button>                        
+                        <a href="/User/List"><i class="icon-refresh"></i> Refresh</a>
+                    </div>                   
+                </div>
+            </div>            
+                    
+        }
+    </div>
+</div>

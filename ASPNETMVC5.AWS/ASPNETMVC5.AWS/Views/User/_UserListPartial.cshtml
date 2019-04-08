@@ -1,0 +1,75 @@
+﻿
+@model ASPNETMVC5.AWS.ViewModels.Users.UserListViewModel
+
+@{
+    var grid = new WebGrid(Model.Users,
+                   canPage: false,
+                   canSort: true,
+                   defaultSort: Model.SearchFilter.SortColumn,
+                   ajaxUpdateContainerId: "innerGridContainer",
+                   ajaxUpdateCallback: "app.setTableSortImages();");
+}
+
+<div style="margin-top:10px" class="row" id="gridContainer">
+    <div class="col-md-12" id="innerGridContainer">
+        <div class="panel panel-primary">
+            <div class="panel-body panel-nopadding">
+                @if (Model.Users.Any())
+                {
+                    <div class="table-responsive">
+                        @grid.GetHtml("table table-hover table-striped sort ",
+                        columns: grid.Columns(
+                        grid.Column("FirstName", "Name", @<text>
+                        @item.Contact.FirstName
+                            </text>),
+                        grid.Column("Username", "Username", @<text>@item.Username</text>),   
+                        grid.Column("Role", "Role", @<text>@item.UserRole.RoleName</text>), 
+                        grid.Column("Email", "Email", @<text>
+                        @item.Contact.Email
+                            </text>),
+                        grid.Column("CellPhone", "CellPhone", @<text>@item.Contact.CellPhone</text>),
+                        grid.Column("Action", format: @<text>
+                        <div class="toolbar">
+                                <div class="btn-group">
+                                    <a class="table-link" title="Detalles" href="/customer/@item.Id/@ASPNETMVC5.AWS.Infrastructure.HtmlHelper.GenerateSlug(item.Contact.FullName)">
+                                        <i class="fa fa-search"></i>
+                                    </a>                                    
+                                </div>
+                            </div>
+                            </text>, canSort: false)
+                        ))
+                        @Html.Hidden("dir", grid.SortDirection)
+                        @Html.Hidden("col", grid.SortColumn)
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning"><i class="fa fa-info-circle"></i> There are currently user to show.</div>
+                }
+
+                @if (Model.SearchFilter.TotalCount > 0)
+                {
+                    <div class="panel-footer">
+                        <div class="row-fluid">
+                            <div class="span10">
+                                @if (Model.SearchFilter.TotalCount > Model.SearchFilter.PageSize)
+                                {
+                                    @Html.PagedListPager((IPagedList)Model.Users, page => Url.Action("List", new
+                                    {
+                                        pageNumber = page,
+                                        searchTerm = Model.SearchFilter.SearchTerm,
+                                        sort = Model.SearchFilter.SortColumn,
+                                        sortdir = Model.SearchFilter.SortDirection
+                                    }),PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "gridContainer" }))
+                                }
+                            </div>
+                            <div class="span2 text-right">
+                                <p class="total-count"><span class="margin-top-10">Total Record:</span><span class="bolder">@Model.SearchFilter.TotalCount</span></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
